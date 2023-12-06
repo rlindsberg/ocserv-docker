@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 RUN apt update
-RUN apt install ocserv certbot iptables -y
+RUN apt install ocserv certbot iptables less -y
 RUN mkdir -p /etc/ocserv/certs
 RUN cd /etc/ocserv/certs
 RUN touch /etc/ocserv/ocpasswd
