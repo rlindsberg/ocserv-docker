@@ -26,13 +26,16 @@ cd ocserv-docker
 
 Add your ca cert and private key to *.pem files.
 
-2. Build docker image
+2. Use TCP BBR algorithm
 ```bash
-docker build -t ocserv .
+echo "net.core.default_qdisc=fq" | sudo tee -a /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
 ```
 
-3. Run docker container
+3. Build and run docker container
 ```bash
+docker build -t ocserv .
 docker run --name ocserv --privileged -p 443:443 -d ocserv
 ```
 
